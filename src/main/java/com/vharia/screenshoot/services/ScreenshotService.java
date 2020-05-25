@@ -6,11 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
+import com.vharia.screenshoot.exceptions.ScreenShotServiceException;
 import com.vharia.screenshoot.utils.MyChromeDriver;
 
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.Command;
 import org.openqa.selenium.remote.Response;
+import org.openqa.selenium.remote.ScreenshotException;
 import org.springframework.stereotype.Service;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -37,7 +39,7 @@ public class ScreenshotService {
             return bytes;
 
         } catch (final Exception e) {
-            throw new RuntimeException("error in taking screenshot", e);
+            throw new ScreenShotServiceException("error in taking screenshot", e);
         } finally {
             driver.quit();
         }

@@ -1,6 +1,9 @@
 package com.vharia.screenshoot.controllers;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import com.vharia.screenshoot.services.ScreenshotService;
 
@@ -24,16 +27,19 @@ public class ScreenshotController {
     }
 
     @GetMapping(produces = MediaType.IMAGE_PNG_VALUE)
-    public ResponseEntity<byte[]> getScreenshot(@RequestParam("url") String url) throws IOException {
+    public ResponseEntity<byte[]> getScreenshot(@RequestParam("url") String url)
+            throws MalformedURLException, URISyntaxException {
+
+        validateURL(url);
 
         byte[] bytes = screenshotService.getScreenshot(url);
-
-        /*
-         * ClassPathResource imgFile = new ClassPathResource("spacex.jpg"); byte[] bytes
-         * = StreamUtils.copyToByteArray(imgFile.getInputStream());
-         */
-
         return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(bytes);
 
+    }
+
+    // basic validation for now. Can be enhanced to include check with regex.
+    private void validateURL(String url) throws MalformedURLException, URISyntaxException {
+
+        new URL(url).toURI();
     }
 }
