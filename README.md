@@ -1,6 +1,7 @@
 # Screen-shoot
 
-A api to generate a screenshot of the webpage passed in the url
+An api to generate a screenshot of the webpage passed in the url
+
 It uses selenium webdriver, Chrome webdriver and requires Chrome browser to be installed in the system.
 
 Also currently, tested on Windows only. Some additional configurations needs to be done for Linux, which I will update shortly.
@@ -10,7 +11,7 @@ Also currently, tested on Windows only. Some additional configurations needs to 
 ```
 git clone https://github.com/viralharia/Screen-shoot.git
 cd Screen-shoot
-mvnw spring-boot:run
+.\mvnw spring-boot:run
 ```
 
 ## Running tests
