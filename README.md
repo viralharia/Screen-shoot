@@ -17,7 +17,7 @@ cd Screen-shoot
 ## Running tests
 
 ```
-mvnw test
+.\mvnw test
 ```
 
 ## API
