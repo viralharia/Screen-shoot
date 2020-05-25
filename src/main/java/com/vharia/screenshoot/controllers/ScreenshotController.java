@@ -22,23 +22,23 @@ public class ScreenshotController {
 
     private final ScreenshotService screenshotService;
 
-    public ScreenshotController(ScreenshotService screenshotService) {
+    public ScreenshotController(final ScreenshotService screenshotService) {
         this.screenshotService = screenshotService;
     }
 
     @GetMapping(produces = MediaType.IMAGE_PNG_VALUE)
-    public ResponseEntity<byte[]> getScreenshot(@RequestParam("url") String url)
+    public ResponseEntity<byte[]> getScreenshot(@RequestParam("url") final String url)
             throws MalformedURLException, URISyntaxException {
 
         validateURL(url);
 
-        byte[] bytes = screenshotService.getScreenshot(url);
+        final byte[] bytes = screenshotService.getScreenshot(url);
         return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(bytes);
 
     }
 
     // basic validation for now. Can be enhanced to include check with regex.
-    private void validateURL(String url) throws MalformedURLException, URISyntaxException {
+    private void validateURL(final String url) throws MalformedURLException, URISyntaxException {
 
         new URL(url).toURI();
     }
